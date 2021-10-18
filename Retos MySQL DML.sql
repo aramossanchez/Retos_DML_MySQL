@@ -36,7 +36,7 @@ select avg(PRECIO) from GeeksHubs.articulos where FABRICANTE=2;
 
 select count(CODIGO) from GeeksHubs.articulos where PRECIO>=180;
 
-# Reto 9: Obtener el nombre y precio de los artículos cuyo precio sea mayor o igual a 180€, y ordenarlos descendentemente por precio, y luego ascendentemente por nombre
+# Reto 9: Obtener el nombre y precio de los artículos cuyo precio sea mayor o igual a 180€, y ordenarlos descendentemente por precio, y luego ascendentemente por nombre.
 
 select NOMBRE, PRECIO from GeeksHubs.articulos where PRECIO>=180 order by PRECIO desc, NOMBRE asc;
 
