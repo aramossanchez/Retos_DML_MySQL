@@ -60,15 +60,34 @@ select avg(GeeksHubs.articulos.PRECIO), GeeksHubs.fabricantes.NOMBRE from GeeksH
 
 # Reto 14: Obtener los nombres de los fabricantes que ofrezcan productos cuyo precio medio sea mayor o igual a 150€.
 
-select avg(GeeksHubs.articulos.PRECIO) as MEDIA, GeeksHubs.fabricantes.NOMBRE from GeeksHubs.articulos inner join GeeksHubs.fabricantes on GeeksHubs.articulos.FABRICANTE=GeeksHubs.fabricantes.CODIGO group by (GeeksHubs.fabricantes.NOMBRE) having MEDIA>=150;
+select avg(GeeksHubs.articulos.PRECIO) as MEDIA, GeeksHubs.fabricantes.NOMBRE 
+from GeeksHubs.articulos 
+inner join GeeksHubs.fabricantes 
+on GeeksHubs.articulos.FABRICANTE=GeeksHubs.fabricantes.CODIGO 
+group by (GeeksHubs.fabricantes.NOMBRE) 
+having MEDIA>=150;
 
 # Reto 15: Obtener el nombre y precio del artículo más barato.
 
-select GeeksHubs.articulos.NOMBRE from GeeksHubs.articulos where PRECIO = (select min(GeeksHubs.articulos.PRECIO) from GeeksHubs.articulos );
+select GeeksHubs.articulos.NOMBRE 
+from GeeksHubs.articulos 
+where PRECIO = (
+	select min(GeeksHubs.articulos.PRECIO) 
+    from GeeksHubs.articulos
+);
 
 # Reto 16: Obtener una lista con el nombre y precio de los artículos más caros de cada proveedor.
 
-select max(GeeksHubs.articulos.PRECIO), GeeksHubs.fabricantes.NOMBRE from GeeksHubs.articulos inner join GeeksHubs.fabricantes on GeeksHubs.articulos.FABRICANTE=GeeksHubs.fabricantes.CODIGO group by (GeeksHubs.fabricantes.NOMBRE);
+select GeeksHubs.articulos.NOMBRE, GeeksHubs.articulos.PRECIO  
+from GeeksHubs.articulos 
+where GeeksHubs.articulos.PRECIO in (
+	select max(GeeksHubs.articulos.PRECIO)
+	from GeeksHubs.articulos
+	inner join GeeksHubs.fabricantes 
+	on GeeksHubs.articulos.FABRICANTE=GeeksHubs.fabricantes.CODIGO 
+	group by GeeksHubs.fabricantes.NOMBRE
+);
+
 
 # Reto 17: Añadir un nuevo producto: Altavoces de 70€ (del fabricante 2).
 
