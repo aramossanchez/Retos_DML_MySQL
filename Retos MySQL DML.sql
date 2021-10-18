@@ -72,8 +72,20 @@ select max(GeeksHubs.articulos.PRECIO), GeeksHubs.fabricantes.NOMBRE from GeeksH
 
 # Reto 17: Añadir un nuevo producto: Altavoces de 70€ (del fabricante 2).
 
+insert into GeeksHubs.articulos (CODIGO, NOMBRE, PRECIO, FABRICANTE) values (11, "Altavoces", 70, 2);
+
 # Reto 18: Cambiar el nombre del producto 8 a 'Impresora Láser'.
+
+update GeeksHubs.articulos set GeeksHubs.articulos.NOMBRE="Impresora Láser" where GeeksHubs.articulos.CODIGO=8;
 
 # Reto 19: Aplicar un descuento del 10% (multiplicar el precio por 0.9) a todos los productos.
 
-# Reto 20: Aplcar un descuento de 10€ a todos los productos cuyo precio sea mayor o igual a 120€.
+SET SQL_SAFE_UPDATES = 0;
+update GeeksHubs.articulos set GeeksHubs.articulos.PRECIO=GeeksHubs.articulos.PRECIO*0.9;
+
+# Reto 20: Aplicar un descuento de 10€ a todos los productos cuyo precio sea mayor o igual a 120€.
+
+update GeeksHubs.articulos set GeeksHubs.articulos.PRECIO=GeeksHubs.articulos.PRECIO-10 where GeeksHubs.articulos.PRECIO>=120;
+
+
+
